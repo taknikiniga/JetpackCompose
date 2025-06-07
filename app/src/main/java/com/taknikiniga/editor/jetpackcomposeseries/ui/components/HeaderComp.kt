@@ -38,7 +38,6 @@ fun HeaderComp(
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = modifier
-            .safeContentPadding()
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
     ) {
