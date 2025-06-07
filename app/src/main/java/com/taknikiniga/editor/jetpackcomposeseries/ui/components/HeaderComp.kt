@@ -3,7 +3,9 @@ package com.taknikiniga.editor.jetpackcomposeseries.ui.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
@@ -47,6 +49,7 @@ fun HeaderComp(
                 title,
                 style = MaterialTheme.typography.labelSmall, color = Color.Gray
             )
+            Spacer(modifier = Modifier.padding(2.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 IconComp(icon = locationIcon, size = iconSize)
                 Text(location, style = MaterialTheme.typography.labelMedium)
@@ -57,9 +60,11 @@ fun HeaderComp(
             icon = notifyIcon,
             clip = true,
             onClick = onNotifyClick,
-            tintColor = Color.Unspecified,
-            size = 20.dp,
-            shape = CircleShape
+            tintColor = MaterialTheme.colorScheme.surface,
+            size = 40.dp,
+            shape = CircleShape,
+            backgroundColor = MaterialTheme.colorScheme.primary,
+            iconModifier = Modifier.padding(10.dp)
         )
     }
 

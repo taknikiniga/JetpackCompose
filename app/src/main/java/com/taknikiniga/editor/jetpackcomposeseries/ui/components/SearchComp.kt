@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.MaterialTheme
@@ -20,33 +21,34 @@ import com.taknikiniga.editor.jetpackcomposeseries.R
 @Composable
 fun SearchComp(
     modifier: Modifier = Modifier,
-    icon: Int,
+    settingsIcon: Int = R.drawable.settings,
+    editorIcon: Int = R.drawable.search,
     value: String,
     onValueChange: (String) -> Unit
 ) {
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()
     ) {
 
         OutlinedTextField(value = value,
             onValueChange = onValueChange,
             leadingIcon = {
-                IconComp(icon = icon)
+                IconComp(icon = editorIcon)
             }, label = {
                 Text("Search")
-            })
-        Spacer(modifier = Modifier.padding(8.dp))
+            }, shape = MaterialTheme.shapes.medium, modifier = Modifier.weight(1f))
+        Spacer(modifier = Modifier.padding(2.dp))
         Surface(
             border = BorderStroke(1.dp, MaterialTheme.colorScheme.surfaceVariant),
-            modifier = Modifier.size(56.dp),
+            modifier = Modifier.size(50.dp),
             color = MaterialTheme.colorScheme.primary,
             shape = MaterialTheme.shapes.medium
         ) {
             IconComp(
-                icon = icon,
-                modifier = Modifier.padding(18.dp),
+                icon = settingsIcon,
+                modifier = Modifier.padding(14.dp),
                 tintColor = MaterialTheme.colorScheme.surface
             )
 
@@ -58,5 +60,5 @@ fun SearchComp(
 @Preview(showSystemUi = true)
 @Composable
 private fun SearchCompPrev() {
-    SearchComp(icon = R.drawable.search, value = "", onValueChange = {})
+    SearchComp(value = "", onValueChange = {})
 }

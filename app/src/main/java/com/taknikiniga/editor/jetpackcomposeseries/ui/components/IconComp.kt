@@ -16,31 +16,36 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import coil3.compose.AsyncImagePainter.State.Empty.painter
 
 @Composable
 fun IconComp(
     modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
     icon: Int,
     contentDescription: String = "",
     tintColor: Color = MaterialTheme.colorScheme.primary,
+    backgroundColor: Color = MaterialTheme.colorScheme.surface,
     clip: Boolean = false,
     shape: Shape = RectangleShape,
     size: Dp = 24.dp,
     onClick: () -> Unit = {},
 ) {
-
-    Icon(
-        painter = painterResource(icon),
-        contentDescription = contentDescription,
-        tint = tintColor,
+    Surface(
         modifier = modifier
-            .clip(if (clip) shape else shape)
-            .background(color = if (clip) MaterialTheme.colorScheme.surface else Color.Unspecified)
-            .size(size)
-            .clickable {
-                onClick()
-            }
-    )
+            .size(size),
+        shape = if (clip) shape else shape,
+        color = if (clip) backgroundColor else Color.Unspecified, onClick = onClick
+    ) {
+        Icon(
+            painter = painterResource(icon),
+            contentDescription = contentDescription,
+            tint = tintColor,
+            modifier = iconModifier
+                .size(size)
+        )
+    }
+
 
 }
 
